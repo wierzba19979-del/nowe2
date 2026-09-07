@@ -7,10 +7,10 @@ public class BMICalculator {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj wagę [kg]:");
         double waga = scanner.nextDouble();
-        System.out.println("Podaj wzrostCm [cm]");
+        System.out.println("Podaj wzrost [cm]");
         double wzrostCm = scanner.nextDouble();
         if (wzrostCm < 30 || wzrostCm > 250)
-            throw new IllegalArgumentException("Podany wzrostCm jest nieprawidłowy");
+            throw new IllegalArgumentException("Podany wzrost jest nieprawidłowy");
         double wzrostm = wzrostCm / 100.0;
         double bmi = waga / (wzrostm * wzrostm);
         System.out.println(String.format("%.2f", bmi));
