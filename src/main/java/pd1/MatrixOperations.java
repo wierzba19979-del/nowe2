@@ -44,15 +44,13 @@ public class MatrixOperations {
         }
 
         boolean isSimetric = true;
+        outer:
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] != matrix[j][i]) {
                     isSimetric = false;
-                    break;
+                    break outer;
                 }
-            }
-            if (!isSimetric) {
-                break;
             }
         }
         if (isSimetric) {
