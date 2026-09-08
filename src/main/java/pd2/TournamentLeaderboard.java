@@ -3,6 +3,11 @@ package pd2;
 import java.util.Scanner;
 
 public class TournamentLeaderboard {
+    /**
+     * Uruchamia program z wynikami turnieju
+     *
+     * @param args argumenty przekazane do programu
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numberOfPlayers;
