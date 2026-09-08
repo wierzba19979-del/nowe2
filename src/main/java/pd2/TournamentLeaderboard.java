@@ -5,8 +5,11 @@ import java.util.Scanner;
 public class TournamentLeaderboard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj liczbę graczy (od 2 do 10):");
-        int numberOfPlayers = scanner.nextInt();
+        int numberOfPlayers;
+        do {
+            System.out.println("Podaj liczbę graczy (od 2 do 10):");
+            numberOfPlayers = scanner.nextInt();
+        } while (numberOfPlayers < 2 || numberOfPlayers > 10);
         Player[] players = new Player[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++) {
             System.out.println("Podaj imię gracza " + (i + 1) + ":");
@@ -21,10 +24,10 @@ public class TournamentLeaderboard {
 
         PlayerSorter.sortBySum(players);
 
-        int higestSingleScore = players[0].getMax();
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].getMax() > higestSingleScore) {
-                higestSingleScore = players[i].getMax();
+        int highestSingleScore = players[0].getMax();
+        for (int i = 1; i < players.length; i++) {
+            if (players[i].getMax() > highestSingleScore) {
+                highestSingleScore = players[i].getMax();
             }
 
         }
@@ -32,7 +35,7 @@ public class TournamentLeaderboard {
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             String star = "";
-            if (player.getMax() == higestSingleScore) {
+            if (player.getMax() == highestSingleScore) {
                 star = "*";
             }
             System.out.println("Miejsce " + (i + 1) + " - " +
