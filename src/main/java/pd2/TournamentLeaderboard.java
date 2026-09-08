@@ -41,8 +41,8 @@ public class TournamentLeaderboard {
             System.out.println("Miejsce " + (i + 1) + " - " +
                     player.getName() + ", suma punktów:" +
                     player.getSum() + ", średnia:" +
-                    player.getAverage() + ", minimalny wynik:" +
-                    player.getMin() + ", maksymalny wynik" +
+                    player.getAverage() + ", minimalny wynik: " +
+                    player.getMin() + ", maksymalny wynik: " +
                     player.getMax() + " - " +
                     star);
         }
