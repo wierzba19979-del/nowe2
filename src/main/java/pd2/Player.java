@@ -22,7 +22,7 @@ public class Player {
     }
 
     public double getAverage() {
-        double average = getSum() / scores.length;
+        double average = (double)getSum() / scores.length;
         return average;
     }
 
