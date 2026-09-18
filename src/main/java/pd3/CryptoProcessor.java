@@ -1,7 +1,7 @@
 package pd3;
 
 public class CryptoProcessor implements PaymentProcessor {
-    private static final double FEE = 0.01;
+    private static final double FEE_PERCENTAGE = 1;
 
     @Override
     public PaymentStatus processPayment(double amount){
@@ -23,8 +23,8 @@ public class CryptoProcessor implements PaymentProcessor {
 
 
     @Override
-    public double getTransactionFee(){
-        return FEE;
+    public double getTransactionFeePercentage(){
+        return FEE_PERCENTAGE;
     }
 
 }

@@ -1,7 +1,7 @@
 package pd3;
 
 public class PayPalProcessor implements PaymentProcessor{
-    private static final double FEE = 0.035;
+    private static final double FEE_PERCENTAGE = 3.5;
 
     @Override
     public PaymentStatus processPayment(double amount){
@@ -23,7 +23,7 @@ public class PayPalProcessor implements PaymentProcessor{
 
 
     @Override
-    public double getTransactionFee(){
-        return FEE;
+    public double getTransactionFeePercentage(){
+        return FEE_PERCENTAGE;
     }
 }

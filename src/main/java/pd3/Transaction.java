@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class Transaction {
     private final double amount;
-    private final double fee;
+    private final double feePercentage;
     private final String processorName;
     private final PaymentStatus status;
     private final LocalDateTime date;
 
-    public Transaction(double amount, double fee, String processorName, PaymentStatus status) {
+    public Transaction(double amount, double feePercentage, String processorName, PaymentStatus status) {
         this.amount = amount;
-        this.fee = fee;
+        this.feePercentage = feePercentage;
         this.processorName = processorName;
         this.status = status;
         this.date = LocalDateTime.now();
@@ -21,8 +21,8 @@ public class Transaction {
         return amount;
     }
 
-    public double getFee() {
-        return fee;
+    public double getFeePercentage() {
+        return feePercentage;
     }
 
     public String getProcessorName() {
@@ -41,7 +41,7 @@ public class Transaction {
     public String toString() {
         return "Transaction{" +
                 "amount=" + amount +
-                ", fee=" + fee +
+                ", feePercentage=" + feePercentage +
                 ", processorName='" + processorName + '\'' +
                 ", status=" + status +
                 ", date=" + date +

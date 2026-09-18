@@ -18,14 +18,14 @@ public class PaymentGateway {
 
     private PaymentProcessor getBestProcessor() {
         return processors.stream()
-                .min(Comparator.comparingDouble(PaymentProcessor::getTransactionFee)).orElseThrow();
+                .min(Comparator.comparingDouble(PaymentProcessor::getTransactionFeePercentage)).orElseThrow();
     }
 
     public PaymentStatus processPayment(double amount) {
         validateAmount(amount);
         PaymentProcessor processor = getBestProcessor();
         PaymentStatus status = processor.processPayment(amount);
-        transactionHistory.add(new Transaction(amount, processor.getTransactionFee(), processor.getClass().getSimpleName(), status));
+        transactionHistory.add(new Transaction(amount, processor.getTransactionFeePercentage(), processor.getClass().getSimpleName(), status));
         return status;
     }
 
@@ -33,7 +33,7 @@ public class PaymentGateway {
         validateAmount(amount);
         PaymentProcessor processor = getBestProcessor();
         PaymentStatus status = processor.refund(amount);
-        transactionHistory.add(new Transaction(amount, processor.getTransactionFee(), processor.getClass().getSimpleName(), status));
+        transactionHistory.add(new Transaction(amount, processor.getTransactionFeePercentage(), processor.getClass().getSimpleName(), status));
         return status;
     }
 

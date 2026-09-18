@@ -1,11 +1,11 @@
 package pd3;
 
-public class CreditCardProcessor implements PaymentProcessor{
-    private static final double FEE = 0.03;
+public class CreditCardProcessor implements PaymentProcessor {
+    private static final double FEE_PERCENTAGE = 3;
 
     @Override
-    public PaymentStatus processPayment(double amount){
-        if(amount <= 0 ){
+    public PaymentStatus processPayment(double amount) {
+        if (amount <= 0) {
             return PaymentStatus.FAILED;
         }
         System.out.println("Płatność kartą kredytową: " + amount + "PLN");
@@ -13,8 +13,8 @@ public class CreditCardProcessor implements PaymentProcessor{
     }
 
     @Override
-    public PaymentStatus refund(double amount){
-        if(amount <= 0 ){
+    public PaymentStatus refund(double amount) {
+        if (amount <= 0) {
             return PaymentStatus.FAILED;
         }
         System.out.println("Zwrot płatności kartą: " + amount + "PLN");
@@ -23,7 +23,7 @@ public class CreditCardProcessor implements PaymentProcessor{
 
 
     @Override
-    public double getTransactionFee(){
-        return FEE;
+    public double getTransactionFeePercentage() {
+        return FEE_PERCENTAGE;
     }
 }
