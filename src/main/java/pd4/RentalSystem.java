@@ -9,6 +9,10 @@ public class RentalSystem {
     public RentalSystem() {
         this.rentals = new ArrayList<>();
     }
+
+    public static RentalSystem initialize() {
+        return new RentalSystem();
+    }
     public void addRental(Rental rental){
         rentals.add(rental);
     }
@@ -27,5 +31,14 @@ public class RentalSystem {
             }
         }
         return counter;
+    }
+    public List<RentalSummary> getSummaries() {
+        List<RentalSummary> summaries = new ArrayList<>();
+
+        for (Rental rental : rentals) {
+            summaries.add(rental.getSummary());
+        }
+
+        return summaries;
     }
 }
