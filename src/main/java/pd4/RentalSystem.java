@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RentalSystem {
     private final List<Rental> rentals;
-
+    private static final double OVERDUE_FEE = 10.0;
     public RentalSystem() {
         this.rentals = new ArrayList<>();
     }
@@ -16,10 +16,14 @@ public class RentalSystem {
     public void addRental(Rental rental){
         rentals.add(rental);
     }
-    public double calculateTotalCost(){
+    public double calculateTotalCost() {
         double total = 0;
-        for (Rental rental : rentals){
-            total += rental.calculateCost();
+        for (Rental rental : rentals) {
+            double cost = rental.calculateCost();
+            if (rental.getStatus() == RentalStatus.OVERDUE) {
+                cost += OVERDUE_FEE;
+            }
+            total += cost;
         }
         return total;
     }
@@ -36,9 +40,19 @@ public class RentalSystem {
         List<RentalSummary> summaries = new ArrayList<>();
 
         for (Rental rental : rentals) {
-            summaries.add(rental.getSummary());
-        }
+            double cost = rental.calculateCost();
 
+            if (rental.getStatus() == RentalStatus.OVERDUE) {
+                cost += OVERDUE_FEE;
+            }
+            summaries.add(
+                    new RentalSummary(
+                            rental.getResource().getName(),
+                            rental.getStatus(),
+                            cost
+                    )
+            );
+        }
         return summaries;
     }
 }

@@ -1,7 +1,7 @@
 package pd4;
 
 public final class Book extends Resource{
-    private String author;
+    private final String author;
 
     public Book(int id, String name, double basePrice, ResourceType type, String author) {
         super(id, name, basePrice, type);

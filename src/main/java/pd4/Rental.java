@@ -30,8 +30,4 @@ public class Rental {
     public double calculateCost(){
         return getResource().calculateRentalCost(days);
     }
-
-    public RentalSummary getSummary(){
-        return new RentalSummary(resource.getName(), status,calculateCost());
-    }
 }
