@@ -1,5 +1,8 @@
 package pd4;
 
+import lombok.Getter;
+
+@Getter
 public final class Movie extends Resource{
     private final int duration;
     private static final double EXTRA_FEE_FOR_MOVIE = 10.0;
@@ -13,7 +16,4 @@ public final class Movie extends Resource{
         return getBasePrice() * days + EXTRA_FEE_FOR_MOVIE;
     }
 
-    public int getDuration() {
-        return duration;
-    }
 }

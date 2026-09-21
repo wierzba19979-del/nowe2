@@ -1,5 +1,8 @@
 package pd4;
 
+import lombok.Getter;
+
+@Getter
 public final class Book extends Resource{
     private final String author;
 
@@ -13,7 +16,4 @@ public final class Book extends Resource{
         return getBasePrice() * days;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 }
