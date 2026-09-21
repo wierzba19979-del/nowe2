@@ -3,6 +3,7 @@ package pd4;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @AllArgsConstructor
 public class Rental {
@@ -11,7 +12,7 @@ public class Rental {
     private RentalStatus status;
     private final int days;
 
-    public double calculateCost(){
+    public double calculateCost() {
         return getResource().calculateRentalCost(days);
     }
 }
