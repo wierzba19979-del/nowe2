@@ -3,9 +3,7 @@ package pd4;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-
 @SuperBuilder
-@AllArgsConstructor
 @Getter
 public abstract sealed class Resource implements Comparable<Resource> permits Book, Movie{
     private final int id;
