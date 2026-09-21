@@ -1,15 +1,13 @@
 package pd4;
 
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Getter
 public final class Movie extends Resource{
     private final int duration;
     private static final double EXTRA_FEE_FOR_MOVIE = 10.0;
-    public Movie(int id, String name, double basePrice, ResourceType type, int duration) {
-        super(id, name, basePrice, type);
-        this.duration = duration;
-    }
 
     @Override
     public double calculateRentalCost(int days) {

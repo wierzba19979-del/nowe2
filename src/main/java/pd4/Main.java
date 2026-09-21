@@ -7,10 +7,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Resource> resources = new ArrayList<>(List.of(
-                new Book(1, "Niezwyciężony", 44.99, ResourceType.BOOK, "Stanisław Lem"),
-                new Book(2, "Potop", 49.99, ResourceType.BOOK, "Henryk Sienkiewicz"),
-                new Movie(3, "Chłopaki nie płaczą", 39.99, ResourceType.MOVIE, 96),
-                new Movie(4, "Kiler", 34.99, ResourceType.MOVIE, 104)));
+                Book.builder().id(1).name("Niezwyciężony").basePrice(44.99).type(ResourceType.BOOK).build(),
+                Book.builder().id(2).name("Potop").basePrice(49.99).type(ResourceType.BOOK).build(),
+                Movie.builder().id(3).name("Chłopaki nie płaczą").basePrice(39.99).type(ResourceType.MOVIE).build(),
+                Movie.builder().id(4).name("Kiler").basePrice(34.99).type(ResourceType.MOVIE).build()
+        ));
         RentalSystem system = RentalSystem.initialize();
         system.addRental(new Rental(resources.get(0), RentalStatus.ACTIVE, 3));
         system.addRental(new Rental(resources.get(1), RentalStatus.OVERDUE, 4));
