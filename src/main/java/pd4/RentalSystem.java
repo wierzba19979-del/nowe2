@@ -1,21 +1,25 @@
 package pd4;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class RentalSystem {
     private final List<Rental> rentals;
     private static final double OVERDUE_FEE = 10.0;
-    public RentalSystem() {
-        this.rentals = new ArrayList<>();
-    }
+
+
 
     public static RentalSystem initialize() {
-        return new RentalSystem();
+        return new RentalSystem(new ArrayList<>());
     }
-    public void addRental(Rental rental){
+
+    public void addRental(Rental rental) {
         rentals.add(rental);
     }
+
     public double calculateTotalCost() {
         double total = 0;
         for (Rental rental : rentals) {
@@ -27,15 +31,17 @@ public class RentalSystem {
         }
         return total;
     }
-    public int countByStatus(RentalStatus status){
+
+    public int countByStatus(RentalStatus status) {
         int counter = 0;
         for (Rental rental : rentals) {
-            if(rental.getStatus() == status){
+            if (rental.getStatus() == status) {
                 counter++;
             }
         }
         return counter;
     }
+
     public List<RentalSummary> getSummaries() {
         List<RentalSummary> summaries = new ArrayList<>();
 
