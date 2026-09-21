@@ -1,7 +1,10 @@
 package pd3;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public class Transaction {
     private final double amount;
     private final double feePercentage;
@@ -15,26 +18,6 @@ public class Transaction {
         this.processorName = processorName;
         this.status = status;
         this.date = LocalDateTime.now();
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public double getFeePercentage() {
-        return feePercentage;
-    }
-
-    public String getProcessorName() {
-        return processorName;
-    }
-
-    public PaymentStatus getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
     }
 
     @Override
