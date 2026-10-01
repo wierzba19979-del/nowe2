@@ -5,7 +5,7 @@ public class OperationResult <T>{
     private final T value;
     private final String message;
 
-    public OperationResult(boolean success, T value, String message) {
+    private OperationResult(boolean success, T value, String message) {
         this.success = success;
         this.value = value;
         this.message = message;
@@ -24,6 +24,10 @@ public class OperationResult <T>{
     }
 
     public static <T> OperationResult<T> success (T value){
+        if(value == null) {
+            throw new IllegalArgumentException("Wprowadzona wartość nie może być null");
+        }
         return new OperationResult<>(true, value, "Operacja zakończona");
+
     }
 }
