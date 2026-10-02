@@ -1,13 +1,11 @@
 package pd5;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Optional;
-
+@RequiredArgsConstructor
 public class UserService {
-    private final EnityStorage<User, Long> userStorage;
-
-    public UserService(EnityStorage<User, Long> userStorage) {
-        this.userStorage = userStorage;
-    }
+    private final Repository<User, Long> userStorage;
 
     public void renameUser(Long userId, String newName){
         Optional<User> user = userStorage.findById(userId);

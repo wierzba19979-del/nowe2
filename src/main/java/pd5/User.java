@@ -1,29 +1,21 @@
 package pd5;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-public class User implements Enity<Long> {
+@AllArgsConstructor
+@ToString
+public class User implements Identifiable<Long> {
     private Long id;
     @Getter
     @Setter
     private String name;
-
-    public User(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     @Override
     public Long getID() {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

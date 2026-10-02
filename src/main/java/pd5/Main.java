@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
-        EnityStorage<User, Long> userStorage = new EnityStorage<>();
+        Repository<User, Long> userStorage = new Repository<>();
 
         userStorage.save(new User(1L, "Adam"));
         userStorage.save(new User(2L, "Ewa"));
@@ -20,7 +20,7 @@ public class Main {
         userService.renameUser(2L, "Basia");
         System.out.println(userStorage.findById(2L));
 
-        EnityStorage<Product, String> productStorage = new EnityStorage<>();
+        Repository<Product, String> productStorage = new Repository<>();
 
         productStorage.save(new Product("AAA", "Koszula"));
         productStorage.save(new Product("AAB", "Sweter"));

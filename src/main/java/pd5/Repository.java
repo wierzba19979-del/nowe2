@@ -2,7 +2,7 @@ package pd5;
 
 import java.util.*;
 
-public class EnityStorage<E extends Enity<ID>, ID> {
+public class Repository<E extends Identifiable<ID>, ID> {
     private final Map<ID, E> entities = new HashMap<>();
 
     public void save(E enity) {
