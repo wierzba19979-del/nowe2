@@ -1,4 +1,6 @@
-package pd5;
+package pd5.repository;
+
+import pd5.model.Identifiable;
 
 import java.util.*;
 

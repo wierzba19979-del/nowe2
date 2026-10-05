@@ -1,4 +1,4 @@
-package pd5;
+package pd5.model;
 
 public interface Identifiable<ID> {
     ID getID();

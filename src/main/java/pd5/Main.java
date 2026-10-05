@@ -1,5 +1,10 @@
 package pd5;
 
+import pd5.model.Product;
+import pd5.model.User;
+import pd5.repository.Repository;
+import pd5.service.UserService;
+
 import java.util.Optional;
 
 public class Main {

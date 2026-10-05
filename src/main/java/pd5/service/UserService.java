@@ -1,6 +1,8 @@
-package pd5;
+package pd5.service;
 
 import lombok.RequiredArgsConstructor;
+import pd5.model.User;
+import pd5.repository.Repository;
 
 import java.util.Optional;
 @RequiredArgsConstructor
