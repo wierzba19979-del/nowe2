@@ -1,6 +1,5 @@
-package pd6;
+package pd6.model;
 
-//@SuperBuilder
 public class Team extends Participant {
     public Team(String name) {
         super(name);

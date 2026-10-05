@@ -1,8 +1,7 @@
-package pd6;
+package pd6.model;
 
 import lombok.Getter;
 
-//@SuperBuilder
 @Getter
 public abstract class Participant {
     private final String name;
@@ -15,8 +14,9 @@ public abstract class Participant {
         this.name = name;
         this.points = 0;
     }
-    void addPoints(int points){
-        if(points<0){
+
+    void addPoints(int points) {
+        if (points < 0) {
             throw new IllegalArgumentException("Nie można dodać ujemnej liczby punktów");
         }
         this.points += points;

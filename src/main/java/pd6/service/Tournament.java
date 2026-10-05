@@ -1,36 +1,48 @@
-package pd6;
+package pd6.service;
 
+
+import lombok.NoArgsConstructor;
+import pd6.model.Match;
+import pd6.model.MatchResult;
+import pd6.model.Participant;
+import pd6.model.PointsCalculator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@NoArgsConstructor
 
 public class Tournament {
     private final List<Participant> participants = new ArrayList<>();
     private final List<Match> matches = new ArrayList<>();
-    private final PointsCalculator pointsCalculator;
 
-    public Tournament(PointsCalculator pointsCalculator) {
-        this.pointsCalculator = pointsCalculator;
-    }
 
     public void addParticipant(Participant participant) {
         if (participant == null) {
             throw new IllegalArgumentException("Uczestnik nie może być nullem");
         }
-        if (participants.contains(participant)){
+        if (participants.contains(participant)) {
             throw new IllegalArgumentException("Uczestnik jest już zapisany");
         }
         participants.add(participant);
     }
 
-    public Match playMatch(Participant home, Participant away, MatchResult result) {
+    public Match recordMatch(Participant home, Participant away, MatchResult result) {
+        if (home == null || away == null) {
+            throw new IllegalArgumentException("Uczestnicy nie mogą być nullem");
+        }
+        if (home == away) {
+            throw new IllegalArgumentException("Uczestnik nie moze rozegrać meczu sam ze sobą");
+        }
+        if (result == null) {
+            throw new IllegalArgumentException("Wynik meczu nie może być nullem");
+        }
         if (!participants.contains(home) || !participants.contains(away)) {
             throw new IllegalArgumentException("Obaj uczestnicy muszą być zapisani na turniej");
         }
         Match match = new Match(home, away, result);
-        pointsCalculator.calculate(match);
+        PointsCalculator.calculate(match);
         matches.add(match);
         return match;
     }

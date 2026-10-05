@@ -1,4 +1,4 @@
-package pd6;
+package pd6.model;
 
 public enum MatchResult {
     HOME_WIN,
