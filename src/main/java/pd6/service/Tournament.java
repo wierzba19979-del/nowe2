@@ -14,9 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Tournament {
-    private final List<Participant> participants = new ArrayList<>();
-    private final List<Match> matches = new ArrayList<>();
+    private List<Participant> participants;
+    private List<Match> matches;
 
+    public void initialize (){
+        participants = new ArrayList<>();
+        matches = new ArrayList<>();
+    }
 
     public void addParticipant(Participant participant) {
         if (participant == null) {

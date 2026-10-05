@@ -6,6 +6,7 @@ import pd6.service.Tournament;
 public class Main {
     public static void main(String[] args) {
         Tournament tournament = new Tournament();
+        tournament.initialize();
         Player player1 = new Player("Marek");
         Player player2 = new Player("Jarek");
         Player player3 = new Player("Darek");
