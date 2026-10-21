@@ -21,7 +21,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.sold = sold;
-        this.rating = rating;
+        setRating(rating);
     }
 
     public void setRating(double rating) {
