@@ -1,0 +1,5 @@
+{
+  "inputPath": "sales.csv",
+  "outputPath": "output",
+  "dateFormat": "yyyy-MM-dd"
+}
