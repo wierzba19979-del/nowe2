@@ -25,22 +25,17 @@ public class SalesProcessor {
         this.dateFormatter = DateTimeFormatter.ofPattern(dateFormat);
     }
     private Stream<Sale> parseSale(String line) {
-
         try {
-
             String[] fields = line.split(",", -1);
-
             if (fields.length != 6) {
                 throw new IllegalArgumentException("Incorrect number of columns");
             }
-
             LocalDate date = LocalDate.parse(fields[0], dateFormatter);
             String productId = fields[1].trim();
             String productName = fields[2].trim();
             String category = fields[3].trim();
             int quantity = Integer.parseInt(fields[4].trim());
             BigDecimal unitPrice = new BigDecimal(fields[5].trim());
-
             if (productId.isEmpty() || productName.isEmpty() || category.isEmpty()) {
                 throw new IllegalArgumentException("Empty text field");
             }
