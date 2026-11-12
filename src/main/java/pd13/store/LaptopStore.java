@@ -7,12 +7,16 @@ import lombok.NoArgsConstructor;
 @Getter
 public class LaptopStore {
     private int availableQuantity = 10;
+    private int soldQuantity = 0;
 
-    public synchronized boolean buy(int orderQuantity) {
-        if (orderQuantity > availableQuantity || orderQuantity <= 0) {
-            return false;
+    public synchronized void buy(int orderQuantity) {
+        if (orderQuantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be positive");
+        }
+        if (orderQuantity > availableQuantity) {
+            throw new InsufficientStockException("Not enough laptops in stock");
         }
         availableQuantity -= orderQuantity;
-        return true;
+        soldQuantity += orderQuantity;
     }
 }

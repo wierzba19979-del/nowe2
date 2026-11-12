@@ -3,7 +3,7 @@ package pd13.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor(staticName = "initialize")
+@AllArgsConstructor(staticName = "of")
 @Getter
 public class Order {
     private String name;
