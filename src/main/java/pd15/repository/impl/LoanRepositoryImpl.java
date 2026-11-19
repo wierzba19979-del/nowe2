@@ -7,10 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class LoanRepositoryImpl implements LoanRepository {
-
     private final Map<Long, Loan> loans = new HashMap<>();
+    private final AtomicLong loanIdGenerator = new AtomicLong(1);
 
     @Override
     public Loan save(Loan loan) {
@@ -25,11 +26,16 @@ public class LoanRepositoryImpl implements LoanRepository {
 
     @Override
     public List<Loan> findByMemberId(Long memberId) {
-        return loans.values().stream().filter(loan-> memberId.equals(loan.getMember().getId())).toList();
+        return loans.values().stream().filter(loan -> memberId.equals(loan.getMember().getId())).toList();
     }
 
     @Override
     public List<Loan> findAll() {
         return loans.values().stream().toList();
+    }
+
+    @Override
+    public Long nextId() {
+        return loanIdGenerator.getAndIncrement();
     }
 }

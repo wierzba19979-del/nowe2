@@ -5,7 +5,7 @@ import pd15.dto.LoanDto;
 
 public class LoanMapper {
     public LoanDto toDto(Loan loan) {
-        return LoanDto.of(
+        return new LoanDto(
                 loan.getId(),
                 loan.getBook().getId(),
                 loan.getBook().getTitle(),

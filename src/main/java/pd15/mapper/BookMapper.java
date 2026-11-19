@@ -4,9 +4,8 @@ import pd15.domain.Book;
 import pd15.dto.BookDto;
 
 public class BookMapper {
-
     public BookDto toDto(Book book) {
-        return BookDto.of(
+        return new BookDto(
                 book.getId(),
                 book.getIsbn(),
                 book.getTitle(),

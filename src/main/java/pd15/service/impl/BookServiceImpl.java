@@ -10,6 +10,7 @@ import pd15.service.BookService;
 
 import java.util.List;
 import java.util.Locale;
+
 @AllArgsConstructor
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
@@ -25,7 +26,7 @@ public class BookServiceImpl implements BookService {
     public BookDto findByIsbn(String isbn) {
         return bookRepository.findByIsbn(isbn)
                 .map(bookMapper::toDto)
-                .orElseThrow(() -> new BookNotFoundException("Book with ISBN " + isbn + " not found"));
+                .orElseThrow(() -> new BookNotFoundException(isbn));
     }
 
     @Override
@@ -44,8 +45,8 @@ public class BookServiceImpl implements BookService {
         String lowerCaseQuery = query.toLowerCase(Locale.ROOT);
         return bookRepository.findAll().stream().filter(book ->
                         (book.getTitle() != null && book.getTitle().toLowerCase().contains(lowerCaseQuery)) ||
-                        (book.getAuthor() != null && book.getAuthor().toLowerCase().contains(lowerCaseQuery)) ||
-                        (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(lowerCaseQuery)))
+                                (book.getAuthor() != null && book.getAuthor().toLowerCase().contains(lowerCaseQuery)) ||
+                                (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(lowerCaseQuery)))
                 .map(bookMapper::toDto)
                 .toList();
 

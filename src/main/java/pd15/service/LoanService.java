@@ -1,16 +1,16 @@
 package pd15.service;
 
-import pd15.dto.CreateLoanRequest;
+import pd15.dto.CreateLoanCommand;
 import pd15.dto.LoanDto;
-import pd15.dto.ReturnBookRequest;
+import pd15.dto.ReturnBookCommand;
 
 import java.util.List;
 
 
 public interface LoanService {
-    LoanDto borrowBook(CreateLoanRequest request);
+    LoanDto borrowBook(CreateLoanCommand command);
 
-    LoanDto returnBook(ReturnBookRequest request);
+    LoanDto returnBook(ReturnBookCommand command);
 
     List<LoanDto> getActiveLoans(Long memberId);
 

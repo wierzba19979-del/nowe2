@@ -16,7 +16,7 @@ public class Book {
 
     public void borrow() {
         if (availableCopies == 0) {
-            throw new BookNotAvailableException("Book is not available: " + title);
+            throw new BookNotAvailableException(title);
         }
         availableCopies--;
     }

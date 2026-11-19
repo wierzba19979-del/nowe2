@@ -10,4 +10,5 @@ public interface LoanRepository {
     Optional<Loan> findById(Long id);
     List<Loan> findByMemberId(Long memberId);
     List<Loan>findAll();
+    Long nextId();
 }

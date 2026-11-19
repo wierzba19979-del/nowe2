@@ -1,7 +1,7 @@
 package pd15.exception;
 
 public class LoanNotFoundException extends RuntimeException {
-    public LoanNotFoundException(String message) {
-        super(message);
+    public LoanNotFoundException(Long loanId) {
+        super("Loan with id " + loanId + " not found");
     }
 }

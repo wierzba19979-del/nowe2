@@ -6,7 +6,7 @@ import pd15.dto.MemberDto;
 public class MemberMapper {
 
     public MemberDto toDto(Member member) {
-        return MemberDto.of(
+        return new MemberDto(
                 member.getId(),
                 member.getName(),
                 member.getEmail()

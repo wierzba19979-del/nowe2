@@ -2,9 +2,9 @@ package pd15;
 
 import pd15.domain.Book;
 import pd15.domain.Member;
-import pd15.dto.CreateLoanRequest;
+import pd15.dto.CreateLoanCommand;
 import pd15.dto.LoanDto;
-import pd15.dto.ReturnBookRequest;
+import pd15.dto.ReturnBookCommand;
 import pd15.exception.BookNotAvailableException;
 import pd15.exception.LoanLimitExceededException;
 import pd15.mapper.BookMapper;
@@ -99,14 +99,14 @@ public class Main {
         System.out.println(bookService.findByIsbn("9788307033423"));
         System.out.println(memberService.findById(1L));
 
-        LoanDto loan1 = loanService.borrowBook(CreateLoanRequest.of(1L, 1L));
+        LoanDto loan1 = loanService.borrowBook(new CreateLoanCommand(1L, 1L));
 
         System.out.println("\n=== WYPOŻYCZENIE ===");
         System.out.println(loan1);
         System.out.println("\n=== DOSTĘPNOŚĆ KSIĄŻKI ===");
         System.out.println(bookService.findByIsbn("9788307033423"));
 
-        LoanDto returnedLoan = loanService.returnBook(ReturnBookRequest.of(1L));
+        LoanDto returnedLoan = loanService.returnBook(new ReturnBookCommand(1L));
 
         System.out.println("\n=== ZWROT KSIĄŻKI ===");
         System.out.println(returnedLoan);
@@ -115,19 +115,19 @@ public class Main {
 
         System.out.println("\n=== TEST PODWÓJNEGO ZWROTU ===");
         try {
-            loanService.returnBook(ReturnBookRequest.of(1L));
+            loanService.returnBook(new ReturnBookCommand(1L));
         } catch (IllegalStateException e) {
             System.out.println("Wyjątek: " + e.getMessage());
         }
 
         System.out.println("\n=== TEST LIMITU WYPOŻYCZEŃ ===");
-        loanService.borrowBook(CreateLoanRequest.of(1L, 1L));
-        loanService.borrowBook(CreateLoanRequest.of(1L, 2L));
-        loanService.borrowBook(CreateLoanRequest.of(1L, 3L));
+        loanService.borrowBook(new CreateLoanCommand(1L, 1L));
+        loanService.borrowBook(new CreateLoanCommand(1L, 2L));
+        loanService.borrowBook(new CreateLoanCommand(1L, 3L));
         System.out.println("Aktywne wypożyczenia: "
                 + loanService.getActiveLoans(1L).size());
         try {
-            loanService.borrowBook(CreateLoanRequest.of(1L, 1L));
+            loanService.borrowBook(new CreateLoanCommand(1L, 1L));
         } catch (LoanLimitExceededException e) {
             System.out.println("Limit zadziałał: " + e.getMessage());
         }
@@ -135,10 +135,10 @@ public class Main {
         System.out.println(bookService.findByIsbn("9788377791970"));
 
         System.out.println("=== TEST BRAKU DOSTĘPNOŚCI ===");
-        loanService.borrowBook(CreateLoanRequest.of(3L, 4L));
-        loanService.borrowBook(CreateLoanRequest.of(3L, 4L));
+        loanService.borrowBook(new CreateLoanCommand(3L, 4L));
+        loanService.borrowBook(new CreateLoanCommand(3L, 4L));
         try {
-            loanService.borrowBook(CreateLoanRequest.of(2L, 4L));
+            loanService.borrowBook(new CreateLoanCommand(2L, 4L));
         } catch (BookNotAvailableException e) {
             System.out.println("Wypożyczenie zablokowane: " + e.getMessage());
         }

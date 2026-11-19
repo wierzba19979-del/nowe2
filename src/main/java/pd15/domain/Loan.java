@@ -25,4 +25,9 @@ public class Loan {
         }
         this.returnedAt = LocalDateTime.now();
     }
+
+    public void complete(){
+        markAsReturned();
+        book.returnBack();
+    }
 }

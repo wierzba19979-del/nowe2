@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
     public MemberDto findById(Long id) {
         return memberRepository.findById(id)
                 .map(memberMapper::toDto)
-                .orElseThrow(() -> new MemberNotFoundException("Member with id " + id + " not found"));
+                .orElseThrow(() -> new MemberNotFoundException());
     }
 
     @Override
