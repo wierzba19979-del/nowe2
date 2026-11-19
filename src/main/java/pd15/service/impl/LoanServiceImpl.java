@@ -1,5 +1,6 @@
 package pd15.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import pd15.domain.Book;
 import pd15.domain.Loan;
 import pd15.domain.Member;
@@ -10,6 +11,7 @@ import pd15.exception.BookNotFoundException;
 import pd15.exception.LoanLimitExceededException;
 import pd15.exception.LoanNotFoundException;
 import pd15.exception.MemberNotFoundException;
+import pd15.mapper.LoanMapper;
 import pd15.repository.BookRepository;
 import pd15.repository.LoanRepository;
 import pd15.repository.MemberRepository;
@@ -18,21 +20,14 @@ import pd15.service.LoanService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-
+@RequiredArgsConstructor
 public class LoanServiceImpl implements LoanService {
     private final LoanRepository loanRepository;
     private final BookRepository bookRepository;
     private final MemberRepository memberRepository;
     private final AtomicLong loanIdGenerator = new AtomicLong(1);
+    private final LoanMapper loanMapper;
 
-    public LoanServiceImpl(
-            LoanRepository loanRepository,
-            BookRepository bookRepository,
-            MemberRepository memberRepository) {
-        this.loanRepository = loanRepository;
-        this.bookRepository = bookRepository;
-        this.memberRepository = memberRepository;
-    }
 
     @Override
     public LoanDto borrowBook(CreateLoanRequest request) {

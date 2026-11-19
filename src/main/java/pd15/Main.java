@@ -7,6 +7,9 @@ import pd15.dto.LoanDto;
 import pd15.dto.ReturnBookRequest;
 import pd15.exception.BookNotAvailableException;
 import pd15.exception.LoanLimitExceededException;
+import pd15.mapper.BookMapper;
+import pd15.mapper.LoanMapper;
+import pd15.mapper.MemberMapper;
 import pd15.repository.*;
 import pd15.repository.impl.*;
 import pd15.service.BookService;
@@ -24,13 +27,16 @@ public class Main {
         BookRepository bookRepository = new BookRepositoryImpl();
         MemberRepository memberRepository = new MemberRepositoryImpl();
         LoanRepository loanRepository = new LoanRepositoryImpl();
-
-        BookService bookService = new BookServiceImpl(bookRepository);
-        MemberService memberService = new MemberServiceImpl(memberRepository);
+        BookMapper bookMapper = new BookMapper();
+        MemberMapper memberMapper = new MemberMapper();
+        LoanMapper loanMapper = new LoanMapper();
+        BookService bookService = new BookServiceImpl(bookRepository, bookMapper);
+        MemberService memberService = new MemberServiceImpl(memberRepository, memberMapper);
         LoanService loanService = new LoanServiceImpl(
                 loanRepository,
                 bookRepository,
-                memberRepository
+                memberRepository,
+                loanMapper
         );
         Book book1 = Book.of(
                 1L,

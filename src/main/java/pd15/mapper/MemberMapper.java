@@ -1,0 +1,15 @@
+package pd15.mapper;
+
+import pd15.domain.Member;
+import pd15.dto.MemberDto;
+
+public class MemberMapper {
+
+    public MemberDto toDto(Member member) {
+        return MemberDto.of(
+                member.getId(),
+                member.getName(),
+                member.getEmail()
+        );
+    }
+}
