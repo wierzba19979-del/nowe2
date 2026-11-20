@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class MemberRepositoryImpl implements MemberRepository {
-
     private final Map<Long, Member> members = new HashMap<>();
 
     @Override

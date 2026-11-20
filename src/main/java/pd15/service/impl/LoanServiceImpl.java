@@ -3,6 +3,7 @@ package pd15.service.impl;
 import lombok.AllArgsConstructor;
 import pd15.domain.Book;
 import pd15.domain.Loan;
+import pd15.domain.LoanStatus;
 import pd15.domain.Member;
 import pd15.dto.CreateLoanCommand;
 import pd15.dto.LoanDto;
@@ -41,7 +42,7 @@ public class LoanServiceImpl implements LoanService {
         LocalDateTime borrowedAt = LocalDateTime.now();
         LocalDateTime dueDate = borrowedAt.plusDays(14);
         Long loanId = loanRepository.nextId();
-        Loan loan = Loan.of(loanId, book, member, borrowedAt, dueDate, null);
+        Loan loan = Loan.of(loanId, book, member, borrowedAt, dueDate, null, LoanStatus.ACTIVE);
         member.addLoan(loan);
         Loan savedLoan = loanRepository.save(loan);
         return loanMapper.toDto(savedLoan);

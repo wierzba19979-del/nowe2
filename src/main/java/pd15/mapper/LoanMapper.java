@@ -13,7 +13,8 @@ public class LoanMapper {
                 loan.getMember().getName(),
                 loan.getBorrowedAt(),
                 loan.getDueDate(),
-                loan.getReturnedAt()
+                loan.getReturnedAt(),
+                loan.getStatus()
         );
     }
 }

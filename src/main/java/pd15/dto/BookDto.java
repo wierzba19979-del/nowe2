@@ -7,4 +7,5 @@ public record BookDto(
         String author,
         int year,
         int availableCopies
-) {}
+) {
+}

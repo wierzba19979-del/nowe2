@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface BookService {
     BookDto addBook(Book book);
+
     BookDto findByIsbn(String isbn);
+
     List<BookDto> findAvailable();
+
     List<BookDto> search(String query);
 }

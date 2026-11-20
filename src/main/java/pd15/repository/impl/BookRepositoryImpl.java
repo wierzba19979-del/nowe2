@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class BookRepositoryImpl implements BookRepository {
-
     private final Map<Long, Book> books = new HashMap<>();
 
     @Override
@@ -25,7 +24,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Optional<Book> findByIsbn(String isbn) {
-        if (isbn == null){
+        if (isbn == null) {
             return Optional.empty();
         }
         return books.values().stream().filter(book -> isbn.equals(book.getIsbn())).findFirst();

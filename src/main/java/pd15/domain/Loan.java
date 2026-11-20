@@ -14,20 +14,19 @@ public class Loan {
     private LocalDateTime borrowedAt;
     private LocalDateTime dueDate;
     private LocalDateTime returnedAt;
+    private LoanStatus status;
 
     public boolean isOverdue() {
-        return returnedAt == null && dueDate.isBefore(LocalDateTime.now());
+        return status == LoanStatus.ACTIVE
+                && dueDate.isBefore(LocalDateTime.now());
     }
 
-    public void markAsReturned(){
-        if (this.returnedAt != null){
+    public void complete() {
+        if (status == LoanStatus.RETURNED) {
             throw new IllegalStateException("This loan was already returned");
         }
-        this.returnedAt = LocalDateTime.now();
-    }
-
-    public void complete(){
-        markAsReturned();
+        returnedAt = LocalDateTime.now();
+        status = LoanStatus.RETURNED;
         book.returnBack();
     }
 }

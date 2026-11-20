@@ -16,11 +16,11 @@ public class Member {
     private static final int MAX_ACTIVE_LOANS = 3;
 
     public boolean canBorrowBook() {
-        long activeLoans = loans.stream().filter(loan -> loan.getReturnedAt() == null).count();
+        long activeLoans = loans.stream().filter(loan -> loan.getStatus() == LoanStatus.ACTIVE).count();
         return activeLoans < MAX_ACTIVE_LOANS;
     }
 
-    public void addLoan(Loan loan){
+    public void addLoan(Loan loan) {
         loans.add(loan);
     }
 }
