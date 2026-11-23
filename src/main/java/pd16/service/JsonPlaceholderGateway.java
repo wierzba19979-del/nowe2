@@ -19,29 +19,20 @@ public class JsonPlaceholderGateway extends AbstractApiGateway {
 
     public User getUser(Long userId) throws IOException, InterruptedException {
         String url = BASE_URL + "/users/" + userId;
-        return sendGet(url, "JSONPlaceholder",
-                body -> objectMapper.readValue(body, User.class));
+        return sendGet(BASE_URL + "/users/" + userId, "JSONPlaceholder", User.class);
     }
 
     public List<Todo> getTodos(Long userId) throws IOException, InterruptedException {
         String url = BASE_URL + "/users/" + userId + "/todos";
-        List<Todo> todos = sendGet(url, "JSONPlaceholder TODO",
-                body -> objectMapper.readValue(
-                        body,
-                        new TypeReference<List<Todo>>() {}
-                ));
-        return todos.stream()
-                .filter(todo -> !todo.isCompleted())
-                .toList();
+        List<Todo> todos = sendGet(BASE_URL + "/users/" + userId + "/todos", "JSONPlaceholder TODO",
+                new TypeReference<List<Todo>>() {});
+        return todos.stream().filter(todo -> !todo.isCompleted()).toList();
     }
 
     public List<Post> getPosts(Long userId) throws IOException, InterruptedException {
         String url = BASE_URL + "/users/" + userId + "/posts";
-        List<Post> posts = sendGet(url, "JSONPlaceholder POSTS",
-                body -> objectMapper.readValue(
-                        body,
-                        new TypeReference<List<Post>>() {}
-                ));
+        List<Post> posts = sendGet(BASE_URL + "/users/" + userId + "/posts", "JSONPlaceholder POSTS",
+                new TypeReference<List<Post>>() {});
         return posts.stream()
                 .sorted((p1, p2) -> p2.getId().compareTo(p1.getId()))
                 .limit(3)

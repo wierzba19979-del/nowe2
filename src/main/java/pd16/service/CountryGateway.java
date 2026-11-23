@@ -1,5 +1,6 @@
 package pd16.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pd16.dto.CountryResponse;
 import pd16.model.Country;
@@ -17,17 +18,8 @@ public class CountryGateway extends AbstractApiGateway {
 
     public Country getCountry(String countryName) throws IOException, InterruptedException {
         String url = BASE_URL + "/" + countryName;
-        List<CountryResponse> countries = sendGet(
-                url,
-                "REST Countries",
-                body -> objectMapper.readValue(
-                        body,
-                        objectMapper.getTypeFactory()
-                                .constructCollectionType(
-                                        List.class,
-                                        CountryResponse.class
-                                )
-                )
+        List<CountryResponse> countries = sendGet(url, "REST Countries",
+                new TypeReference<List<CountryResponse>>() {}
         );
         if (countries.isEmpty()) {
             throw new IOException("Country not found: " + countryName);
