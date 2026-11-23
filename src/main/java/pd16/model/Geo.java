@@ -1,7 +1,8 @@
 package pd16.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public record Geo(
-        String lat,
-        String lng
-) {
-}
+        @JsonProperty("lat") String latitude,
+        @JsonProperty("lng") String longitude
+) {}

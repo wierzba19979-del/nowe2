@@ -1,12 +1,32 @@
 package pd16;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pd16.model.*;
-import pd16.service.ApiGateway;
+import pd16.service.*;
+
+import java.net.http.HttpClient;
+import java.time.Duration;
 
 public class Main {
-
     public static void main(String[] args) throws Exception {
-        ApiGateway gateway = new ApiGateway();
+        HttpClient httpClient = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .build();
+        ObjectMapper objectMapper = new ObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        JsonPlaceholderGateway jsonGateway =
+                new JsonPlaceholderGateway(httpClient, objectMapper);
+        WeatherGateway weatherGateway =
+                new WeatherGateway(httpClient, objectMapper);
+        CountryGateway countryGateway =
+                new CountryGateway(httpClient, objectMapper);
+        ApiGateway gateway = new ApiGateway(
+                jsonGateway,
+                weatherGateway,
+                countryGateway
+        );
         UserReport report = gateway.getUserReport(1L);
 
         System.out.println("===== USER REPORT =====");
@@ -34,6 +54,8 @@ public class Main {
         if (report.country() != null) {
             System.out.println("Name: " + report.country().name());
             System.out.println("Capital: " + report.country().capital());
+            System.out.println("Region: " + report.country().region());
+            System.out.println("CCA2: " + report.country().cca2());
             System.out.println("Population: " + report.country().population());
         } else {
             System.out.println("Country unavailable");
