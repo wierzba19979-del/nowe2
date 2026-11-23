@@ -17,9 +17,7 @@ public class WeatherGateway extends AbstractApiGateway {
     }
 
     public Weather getWeather(User user) throws IOException, InterruptedException {
-        Point point = PointExtractor.extract(
-                user.getAddress().geo()
-        );
+        Point point = PointExtractor.extract(user.getAddress().point());
         String url = BASE_URL
                 + "?latitude=" + point.latitude()
                 + "&longitude=" + point.longitude()

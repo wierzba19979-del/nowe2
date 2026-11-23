@@ -1,8 +1,10 @@
 package pd16.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public record Address(
         String street,
         String city,
-        Geo geo
+        @JsonProperty("geo") Point point
 ) {
 }
