@@ -1,6 +1,7 @@
 package pd16;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import pd16.service.JsonPlaceholderGateway;
 
@@ -17,8 +18,9 @@ import static org.mockito.Mockito.when;
 
 public class JsonPlaceholderGatewayTest {
 
+    @SneakyThrows
     @Test
-    void shouldReturnOnlyIncompleteTodos() throws IOException, InterruptedException{
+    void shouldReturnOnlyIncompleteTodos() {
         HttpClient httpClient = mock(HttpClient.class);
         ObjectMapper objectMapper = new ObjectMapper();
         HttpResponse<String> response = mock(HttpResponse.class);

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PointExtractorTest {
 
     @Test
-    void shouldReturnPointFromValidCoordinates(){
+    void shouldReturnPointFromValidCoordinates() {
         Point point = new Point(52.333, 24.2424);
 
         Point result = PointExtractor.extract(point);
@@ -19,21 +19,21 @@ public class PointExtractorTest {
     }
 
     @Test
-    void shouldThrowExceptionForInvalidLatitude(){
+    void shouldThrowExceptionForInvalidLatitude() {
         Point point = new Point(95.0, 24.2424);
 
         assertThrows(IllegalArgumentException.class, () -> PointExtractor.extract(point));
     }
 
     @Test
-    void shouldThrowExceptionForInvalidLongnitude(){
+    void shouldThrowExceptionForInvalidLongitude() {
         Point point = new Point(52.333, 200.0);
 
         assertThrows(IllegalArgumentException.class, () -> PointExtractor.extract(point));
     }
 
     @Test
-    void shouldThrowExceptionForNullPoint(){
+    void shouldThrowExceptionForNullPoint() {
         assertThrows(IllegalArgumentException.class, () -> PointExtractor.extract(null));
     }
 }

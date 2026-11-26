@@ -11,6 +11,7 @@ public class AbstractApiGatewayTest {
         TestGateway() {
             super(null, null);
         }
+
         String buildQuery(String... params) {
             return buildQueryParamsFrom(params);
         }
